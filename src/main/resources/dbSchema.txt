@@ -1,0 +1,36 @@
+CREATE TABLE autor (
+	id_autor INT(10) NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	nacionalidade VARCHAR(50),
+	PRIMARY KEY (id_autor),
+);
+
+CREATE TABLE emprestimo (
+	id_emprestimo INT(10) NOT NULL,
+	id_usuario INT(10),
+	id_livro INT(10),
+	data_emprestimo DATE(10) NOT NULL,
+	data_devolucao DATE(10),
+	PRIMARY KEY (id_emprestimo),
+	FOREIGN KEY (id_livro) REFERENCES livro(id_livro),
+	FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+);
+
+CREATE TABLE livro (
+	id_livro INT(10) NOT NULL,
+	titulo VARCHAR(100) NOT NULL,
+	genero VARCHAR(50),
+	ano_publicacao INT(10),
+	id_autor INT(10),
+	PRIMARY KEY (id_livro),
+	FOREIGN KEY (id_autor) REFERENCES autor(id_autor),
+);
+
+CREATE TABLE usuario (
+	id_usuario INT(10) NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	telefone VARCHAR(15),
+	PRIMARY KEY (id_usuario),
+);
+
